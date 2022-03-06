@@ -32,9 +32,8 @@ const DUMMY_PRODUCTS = [
   },
 ];
 
-type Props = {};
 
-const Products = (props: Props) => {
+const Products : React.FC = () => {
   const dispatch = useAppDispatch();
   const addToCartHandler = (id: string, title: string, price: number) =>
     dispatch(cartActions.addItemToCart({ id, title, price }));
