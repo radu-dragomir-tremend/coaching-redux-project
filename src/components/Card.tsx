@@ -1,11 +1,10 @@
-import React, { ReactNode } from 'react';
+import React, { FC, ReactNode } from 'react';
 
-type Props = {
+interface Props  {
   className?: string;
-  children?: ReactNode;
 };
 
-const Card = (props: Props) => {
+const Card : FC<Props> = (props) => {
   return (
     <section className={`card ${props.className ? props.className : ''}`}>
       {props.children}
