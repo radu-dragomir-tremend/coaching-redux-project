@@ -1,10 +1,15 @@
 import React, { FC } from 'react';
 import { uiActions } from '../app/ui-slice';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
+import { loopTesting, promiseTesting } from '../performance';
 
 const Navbar: FC = () => {
   const dispatch = useAppDispatch();
-  const toggleCart = () => dispatch(uiActions.toggle());
+  const toggleCart = () => {
+    // loopTesting()
+    // promiseTesting()
+    dispatch(uiActions.toggle())
+  };
 
   const quantity = useAppSelector((state) => state.cart.totalQuantity);
   return (

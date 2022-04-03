@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useMemo } from 'react';
 import { cartActions } from '../app/cart-slice';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
 import { useSelectorNoDuplicates } from '../custom-hooks';
@@ -17,10 +17,29 @@ const Cart: FC = (props: Props) => {
     dispatch(cartActions.addItemToCart({ id, title, price }));
   };
 
+  const dummyObject = {
+    noOfItems: items.length
+  }
+
+  const dummyObject2 = useMemo(()=>{
+    return {
+      noOfItems: items.length
+    }
+  },[items.length])
+
+  // useEffect(() => {
+  //   console.log('Items', items)
+  //   console.log('No duplicates', noDuplicates)
+  // }, [items,noDuplicates])
+
   useEffect(() => {
-    console.log('Items', items)
-    console.log('No duplicates', noDuplicates)
-  }, [items,noDuplicates])
+    console.log('no useMemo')
+    console.log('---')
+  }, [dummyObject])
+  useEffect(() => {
+    console.log('with useMemo')
+    console.log('===')
+  }, [dummyObject2])
 
   return (
     <Card className='cart'>
